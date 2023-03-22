@@ -6,17 +6,42 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:js:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "lint:css": "stylelint **/*.{scss,css}",
+    "lint:css:fix": "stylelint --fix **/*.{scss,css}",
+    "lint:json": "prettier --check \"./**/*.json\"",
+    "lint:json:fix": "prettier --write \"./**/*.json\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:json",
+    "lint:fix": "npm run lint:js:fix && npm run lint:css:fix && npm run lint:json:fix",
+    "commit": "commit",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@types/node": "18.15.5",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "eslint": "8.36.0",
-    "eslint-config-next": "13.2.4",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.5.0",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/prompt-cli": "^17.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint-config-next": "^13.2.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.0",
+    "prettier": "^2.8.6",
+    "stylelint": "^15.3.0",
+    "stylelint-checkstyle-formatter": "^0.1.2",
+    "stylelint-config-standard": "^31.0.0",
+    "stylelint-scss": "^4.5.0"
   }
 }
