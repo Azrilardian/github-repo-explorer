@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>
+        <div class={styles.center}>
           <Image
             className={styles.logo}
             src="/next.svg"
