@@ -1,12 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const nextJest = require("next/jest");
+const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
-  dir: "./",
-});
+  dir: './',
+})
 /** @type {import('jest').Config} */
 const customJestConfig = {
-  testEnvironment: "jest-environment-jsdom",
-};
+  testEnvironment: 'jest-environment-jsdom',
+}
 
-module.exports = createJestConfig(customJestConfig);
+module.exports = createJestConfig(customJestConfig)

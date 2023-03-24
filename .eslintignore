@@ -1,5 +1,6 @@
 .next
+node_modules
+.vscode
 package-lock.json
-node_modules/
-build/
-dist/
+dist
+build
