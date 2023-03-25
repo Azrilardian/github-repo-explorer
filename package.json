@@ -16,7 +16,8 @@
     "lint": "npm run lint:js && npm run lint:css && npm run lint:json",
     "lint:fix": "npm run lint:js:fix && npm run lint:css:fix && npm run lint:json:fix",
     "commit": "commit",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "npx lint-staged --concurrent false"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
