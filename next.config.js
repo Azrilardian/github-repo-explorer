@@ -1,6 +1,7 @@
-/** @type {import('next').NextConfig} **/
-const nextConfig = {
-  reactStrictMode: true,
-}
+/* eslint-disable @typescript-eslint/no-var-requires */
+const withTwin = require('./withTwin.js')
 
-module.exports = nextConfig
+/** @type {import('next').NextConfig} **/
+module.exports = withTwin({
+  reactStrictMode: true,
+})
