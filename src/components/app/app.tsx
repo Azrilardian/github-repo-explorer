@@ -2,9 +2,9 @@ import React from 'react'
 import Input from '@/components/input/Input'
 import { AppContainer } from './app.elements'
 
-const App = (props) => (
+const App = () => (
   <AppContainer>
-    <Input />
+    <Input input="must-be-input" />
   </AppContainer>
 )
 
