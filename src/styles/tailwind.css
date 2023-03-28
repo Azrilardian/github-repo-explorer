@@ -2,9 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
-
-@layer components {
-  .app-container {
-    @apply bg-blue-500 w-full md:w-1/2 m-auto;
-  }
-}

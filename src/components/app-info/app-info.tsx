@@ -7,7 +7,7 @@ const AppInfo = () => (
       GITHUB REPO EXPLORER
     </Typography>
     <Typography variant="body1" gutterBottom my={2}>
-      Search your favorite github repo
+      Search your favourite github repo
     </Typography>
   </>
 )

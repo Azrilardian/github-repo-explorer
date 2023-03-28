@@ -2,13 +2,13 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { useState, useCallback, memo } from 'react'
-import type { ChangeEvent, FC } from 'react'
+import type { ChangeEvent } from 'react'
 
-interface InputProps {
+type InputProps = {
   input: string
 }
 
-const Input: FC<InputProps> = (props) => {
+const Input = (props: InputProps) => {
   const [input, setInput] = useState('')
 
   const getInput = useCallback(
@@ -25,7 +25,7 @@ const Input: FC<InputProps> = (props) => {
         fullWidth
         value={input}
         onInput={getInput}
-        label="Outlined"
+        label="Github Account Name"
         variant="outlined"
       />
     </Box>
