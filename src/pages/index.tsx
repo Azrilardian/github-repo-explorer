@@ -1,8 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 import App from '@/components/app/app'
+import { Providers } from '@/redux/provider'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export default function Home() {
+  const queryClient = new QueryClient()
+
   return (
     <>
       <Head>
@@ -29,7 +33,11 @@ export default function Home() {
         <meta httpEquiv="Cache-Control" content="no-cache" />
       </Head>
       <main>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <Providers>
+            <App />
+          </Providers>
+        </QueryClientProvider>
       </main>
     </>
   )

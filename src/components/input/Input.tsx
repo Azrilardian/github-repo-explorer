@@ -1,34 +1,23 @@
 import React from 'react'
-import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-import { useState, useCallback, memo } from 'react'
-import type { ChangeEvent } from 'react'
+import { memo } from 'react'
+import { useUsername } from '@/redux/hooks/useUsername'
 
 type InputProps = {
-  input: string
+  refName: any
 }
 
-const Input = (props: InputProps) => {
-  const [input, setInput] = useState('')
-
-  const getInput = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const newInput = event.target.value
-      setInput(newInput)
-    },
-    [setInput]
-  )
+const Input = ({ refName }: InputProps) => {
+  const { username } = useUsername()
 
   return (
-    <Box component="form" noValidate autoComplete="off">
-      <TextField
-        fullWidth
-        value={input}
-        onInput={getInput}
-        label="Github Account Name"
-        variant="outlined"
-      />
-    </Box>
+    <TextField
+      inputRef={refName}
+      fullWidth
+      label="Github Account Name"
+      variant="outlined"
+      defaultValue={username}
+    />
   )
 }
 

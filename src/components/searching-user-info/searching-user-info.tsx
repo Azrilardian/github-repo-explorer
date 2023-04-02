@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import Chip from '@mui/material/Chip'
 import Typography from '@mui/material/Typography'
+import { SearchingUserInfoWrapper } from './searching-user-info.elements'
+import { useUsername } from '@/redux/hooks/useUsername'
 
 type SearchingUserInfoProps = {
-  name: string
+  info: string
 }
 
-const SearchingUserInfo = (props: SearchingUserInfoProps) => {
-  const { name } = props
+const SearchingUserInfo = ({ info }: SearchingUserInfoProps) => {
+  const { username } = useUsername()
+  const isUserExist = username.length >= 1
 
   return (
-    <>
-      <Typography variant="body1" gutterBottom my={2}>
-        Showing users for &quot;{name}&quot;
-      </Typography>
-    </>
+    isUserExist && (
+      <SearchingUserInfoWrapper>
+        <Typography variant="body1" gutterBottom my={2}>
+          {info}
+        </Typography>
+        <Chip label={username} />
+      </SearchingUserInfoWrapper>
+    )
   )
 }
 

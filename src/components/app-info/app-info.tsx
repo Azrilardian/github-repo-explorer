@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Typography from '@mui/material/Typography'
 
 const AppInfo = () => (
@@ -6,10 +6,10 @@ const AppInfo = () => (
     <Typography variant="h1" gutterBottom fontSize={30} fontWeight={500}>
       GITHUB REPO EXPLORER
     </Typography>
-    <Typography variant="body1" gutterBottom my={2}>
+    <Typography variant="body1" gutterBottom mb={5}>
       Search your favourite github repo
     </Typography>
   </>
 )
 
-export default AppInfo
+export default memo(AppInfo)

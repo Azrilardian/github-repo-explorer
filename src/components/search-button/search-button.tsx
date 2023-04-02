@@ -1,27 +1,28 @@
-import type { MouseEventHandler } from 'react'
-import React from 'react'
+import React, { memo } from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
+import useQueryUsers from '@/hooks/useQueryUsers'
 
 type ButtonProps = {
-  isLoading: boolean
-  searchUser: MouseEventHandler<HTMLButtonElement>
+  handleClick: any
 }
 
-const SearchButton = (props: ButtonProps) => {
-  const { isLoading, searchUser } = props
+const SearchButton = ({ handleClick }: ButtonProps) => {
+  const { isSearchLoading } = useQueryUsers()
 
   return (
-    <LoadingButton
-      fullWidth
-      sx={{ margin: '1rem 0' }}
-      variant="contained"
-      size="large"
-      loading={isLoading}
-      onClick={searchUser}
-    >
-      Search
-    </LoadingButton>
+    <div>
+      <LoadingButton
+        fullWidth
+        sx={{ margin: '1rem 0' }}
+        variant="contained"
+        size="large"
+        onClick={handleClick}
+        loading={isSearchLoading}
+      >
+        Search
+      </LoadingButton>
+    </div>
   )
 }
 
-export default SearchButton
+export default memo(SearchButton)
