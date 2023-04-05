@@ -1,18 +1,27 @@
-import React from 'react'
+import type { UsersType, UsersDataType } from '@/types/Users'
 import octokit from '@/utils/octokit-init'
 
 const searchUsers = async (username: string) => {
   try {
-    const accountResponse = await octokit.request(`GET /search/users`, {
+    const usersResponse = await octokit.request(`GET /search/users`, {
       q: username,
       per_page: 5,
     })
 
-    const accountData = accountResponse.data.items
+    const usersData = usersResponse.data.items
 
-    return accountData
-  } catch (error: any) {
-    return new Error(error.message)
+    const usersDataSliced: UsersType = usersData.map(
+      ({ id, login }: UsersDataType) => {
+        return {
+          id,
+          login,
+        }
+      }
+    )
+
+    return usersDataSliced
+  } catch (error: Error) {
+    return new Error(error)
   }
 }
 

@@ -1,22 +1,26 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Accordion from '@mui/material/Accordion'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import AccordionSummary from '@mui/material/AccordionSummary'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import AccordionDetails from '@mui/material/AccordionDetails'
 import Typography from '@mui/material/Typography'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import type { MouseEventHandler } from 'react'
+import type { SyntheticEvent } from 'react'
+
 import RepoList from '@/components/repo-list/repo-list'
-import { useUserRepos } from '@/redux/hooks/useUserRepos'
 import useQueryRepos from '@/hooks/useQueryRepos'
 import { useSelectedUser } from '@/redux/hooks/useSelectedUser'
+import { useUserRepos } from '@/redux/hooks/useUserRepos'
+import type { ReposDataType } from '@/types/Repos'
 
 type UserListProps = {
+  key?: number
   login: string
-  expanded: any
-  handleChange: any
+  getUserRepos: MouseEventHandler<HTMLButtonElement>
 }
 
-const UserList = ({ login, handleChange }: UserListProps) => {
+const UserList = ({ login, getUserRepos }: UserListProps) => {
   const { userRepos } = useUserRepos()
   const { isRepoLoading } = useQueryRepos()
   const { selectedUser } = useSelectedUser()
@@ -25,7 +29,7 @@ const UserList = ({ login, handleChange }: UserListProps) => {
     <Accordion
       sx={{ marginBottom: '10px' }}
       expanded={selectedUser === login}
-      onChange={(event) => handleChange(event, login)}
+      onChange={(event: SyntheticEvent) => getUserRepos(event, login)}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -48,13 +52,20 @@ const UserList = ({ login, handleChange }: UserListProps) => {
         ) : (
           selectedUser === login &&
           userRepos.map(
-            ({ id, name, description, stargazers_count, html_url }) => (
+            ({
+              id,
+              name,
+              description,
+              stargazers_count,
+              html_url,
+            }: ReposDataType) => (
               <RepoList
-                link={html_url}
+                html_url={html_url}
                 key={id}
+                id={id}
                 name={name}
                 description={description}
-                star={stargazers_count}
+                stargazers_count={stargazers_count}
               ></RepoList>
             )
           )

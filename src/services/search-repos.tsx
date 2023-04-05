@@ -1,15 +1,34 @@
+import type { ReposType, ReposDataType } from '@/types/Repos'
 import octokit from '@/utils/octokit-init'
 
 const searchRepos = async (userSelected: string) => {
   try {
-    const repoResponse = await octokit.request(
+    const reposResponse = await octokit.request(
       `GET /users/${userSelected}/repos`
     )
 
-    const repoData = repoResponse.data
+    const reposData = reposResponse.data
 
-    return repoData
-  } catch (error: any) {
+    const reposDataSliced: ReposType = reposData.map(
+      ({
+        id,
+        name,
+        description,
+        stargazers_count,
+        html_url,
+      }: ReposDataType) => {
+        return {
+          id,
+          name,
+          description,
+          stargazers_count,
+          html_url,
+        }
+      }
+    )
+
+    return reposDataSliced
+  } catch (error: Error) {
     return new Error(error)
   }
 }

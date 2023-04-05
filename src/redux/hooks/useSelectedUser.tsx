@@ -1,5 +1,5 @@
-import { useAppSelector, useAppDispatch } from '@/redux/hooks/hooks'
 import { setSelectedUser } from '@/redux/features/selectedUserSlice'
+import { useAppSelector, useAppDispatch } from '@/redux/hooks/hooks'
 
 const useSelectedUser = () => {
   const dispatch = useAppDispatch()

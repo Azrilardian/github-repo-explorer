@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
-import searchRepos from '@/services/search-repos'
+
 import { useSelectedUser } from '@/redux/hooks/useSelectedUser'
-
-type SearchUsersData = {
-  accountData: any[]
-}
-
-type ApiError = {
-  message: string
-}
+import searchRepos from '@/services/search-repos'
+import type { ApiError } from '@/types/QueryApiError'
+import type { ReposDataType } from '@/types/Repos'
 
 const useQueryRepos = () => {
   const { selectedUser } = useSelectedUser()
@@ -25,7 +19,7 @@ const useQueryRepos = () => {
     isError: isRepoError,
     data: repoData,
     error: repoError,
-  } = useQuery<SearchUsersData, ApiError>(
+  } = useQuery<ReposDataType | ApiError>(
     queryParameter,
     () => searchRepos(selectedUser),
     querySettings

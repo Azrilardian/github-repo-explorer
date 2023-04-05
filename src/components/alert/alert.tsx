@@ -1,12 +1,12 @@
-import React from 'react'
 import Alert from '@mui/material/Alert'
+import React from 'react'
 
-type alertProps = {
+type AlertProps = {
   alertMessage: string
 }
 
-const BasicAlert = ({ alertMessage }: alertProps) => (
-  <Alert severity="error">This is an error alert — {alertMessage}</Alert>
+const BasicAlert = ({ alertMessage }: AlertProps) => (
+  <Alert severity="error">{alertMessage}</Alert>
 )
 
 export default BasicAlert

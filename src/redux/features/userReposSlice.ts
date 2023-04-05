@@ -1,19 +1,17 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-type ReposState = {
-  userRepos: any
-}
+import type { ReposType } from '@/types/Repos'
 
-const initialState = {
+const initialState: ReposType = {
   userRepos: [],
-} as ReposState
+}
 
 const userReposSlice = createSlice({
   name: 'userReposSlice',
   initialState,
   reducers: {
-    setUserRepos: (state, action: PayloadAction<any>) => {
+    setUserRepos: (state: ReposType, action: PayloadAction<any>) => {
       state.userRepos = action.payload
     },
   },

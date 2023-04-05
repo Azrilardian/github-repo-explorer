@@ -1,37 +1,31 @@
-'use client'
-
-import React, { useEffect } from 'react'
 import Box from '@mui/material/Box'
+import { useEffect, useRef } from 'react'
+import type { SyntheticEvent } from 'react'
+
 import Input from '@/components/input/Input'
-import useQueryUsers from '@/hooks/useQueryUsers'
-import useUsernameInput from '@/hooks/useUsernameInput'
 import SearchButton from '@/components/search-button/search-button'
-import BasicAlert from '@/components/alert/alert'
+import useQueryUsers from '@/hooks/useQueryUsers'
 import { useUsername } from '@/redux/hooks/useUsername'
 import { useUsers } from '@/redux/hooks/useUsers'
 
 const Form = () => {
-  const { username } = useUsername()
+  const { dispatchUsername } = useUsername()
   const { dispatchUsers } = useUsers()
-  const { validateUsername, updateUsername, usernameInputRef } =
-    useUsernameInput()
-  const { isSearchSuccess, isSearchError, searchError, searchUsersData } =
-    useQueryUsers()
+  const { isSearchSuccess, searchUsersData } = useQueryUsers()
+  const usernameInputRef = useRef<HTMLInputElement>()
 
   useEffect(() => {
-    if (username && isSearchSuccess) {
+    if (isSearchSuccess) {
       dispatchUsers(searchUsersData)
+    } else {
+      dispatchUsers([])
     }
-  }, [username, isSearchSuccess])
+  }, [isSearchSuccess])
 
-  const handleChangeUsername = (event: any) => {
+  const handleUpdateUsername = (event: SyntheticEvent) => {
     event.preventDefault()
 
-    const isUsernameValid = validateUsername()
-
-    if (isUsernameValid) {
-      updateUsername()
-    }
+    dispatchUsername(usernameInputRef.current?.value)
   }
 
   return (
@@ -39,13 +33,10 @@ const Form = () => {
       component="form"
       noValidate
       autoComplete="off"
-      onSubmit={handleChangeUsername}
+      onSubmit={handleUpdateUsername}
     >
-      <Input refName={usernameInputRef} />
-      <SearchButton handleClick={handleChangeUsername}></SearchButton>
-      {isSearchError && (
-        <BasicAlert alertMessage={searchError?.message}></BasicAlert>
-      )}
+      <Input inputRefName={usernameInputRef} />
+      <SearchButton handleClick={handleUpdateUsername}></SearchButton>
     </Box>
   )
 }

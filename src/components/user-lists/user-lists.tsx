@@ -1,9 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
+import type { SyntheticEvent } from 'react'
+
 import UserList from '@/components/user-list/user-list'
-import { useUsers } from '@/redux/hooks/useUsers'
 import useQueryRepos from '@/hooks/useQueryRepos'
+import useQueryUsers from '@/hooks/useQueryUsers'
 import { useSelectedUser } from '@/redux/hooks/useSelectedUser'
 import { useUserRepos } from '@/redux/hooks/useUserRepos'
+import { useUsers } from '@/redux/hooks/useUsers'
+import type { UsersDataType } from '@/types/Users'
 
 const UserLists = () => {
   const { users } = useUsers()
@@ -17,20 +21,18 @@ const UserLists = () => {
     }
   }, [selectedUser, isRepoSuccess])
 
-  const handleGetUserRepos = (event: any, login: string) => {
-    event.preventDefault()
-
-    dispatchSelectedUser(login)
-  }
+  const getUserRepos = useCallback(
+    (event: SyntheticEvent, login: string) => {
+      event.preventDefault()
+      dispatchSelectedUser(login)
+    },
+    [dispatchSelectedUser]
+  )
 
   return (
     <>
-      {users.map(({ id, login }) => (
-        <UserList
-          key={id}
-          login={login}
-          handleChange={handleGetUserRepos}
-        ></UserList>
+      {users.map(({ id, login }: UsersDataType) => (
+        <UserList key={id} login={login} getUserRepos={getUserRepos}></UserList>
       ))}
     </>
   )

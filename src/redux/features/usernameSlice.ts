@@ -1,23 +1,21 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-type UsernameState = {
-  username: string
-}
+import type { UsernameType } from '@/types/Username'
 
-const initialState = {
+const initialState: UsernameType = {
   username: '',
-} as UsernameState
+}
 
 const usernameSlice = createSlice({
   name: 'usernameSlice',
   initialState,
   reducers: {
-    changeUsername: (state, action: PayloadAction<string>) => {
+    setUsername: (state: UsernameType, action: PayloadAction<string>) => {
       state.username = action.payload
     },
   },
 })
 
-export const { changeUsername } = usernameSlice.actions
+export const { setUsername } = usernameSlice.actions
 export default usernameSlice.reducer

@@ -1,18 +1,20 @@
-import React from 'react'
-import Typography from '@mui/material/Typography'
 import StarIcon from '@mui/icons-material/Star'
-import { RepoListWrapper, RepoStar } from './repo-list.elements'
+import Typography from '@mui/material/Typography'
+
+import type { ReposDataType } from '@/types/Repos'
 import sliceWords from '@/utils/sliceWords'
+import validateUrl from '@/utils/validateUrl'
 
-type RepoListProps = {
-  name: string
-  description: string
-  star: string
-  link: string
-}
+import { RepoListWrapper, RepoStar } from './repo-list.elements'
 
-const RepoList = ({ name, description, star, link }: RepoListProps) => (
-  <RepoListWrapper href={link}>
+const RepoList = ({
+  id,
+  name,
+  description,
+  stargazers_count,
+  html_url,
+}: ReposDataType) => (
+  <RepoListWrapper href={validateUrl(html_url)} id={id}>
     <div>
       <Typography variant="h6">{name}</Typography>
       {description && (
@@ -22,7 +24,7 @@ const RepoList = ({ name, description, star, link }: RepoListProps) => (
       )}
     </div>
     <RepoStar>
-      <Typography variant="body1">{star}</Typography>
+      <Typography variant="body1">{stargazers_count}</Typography>
       <StarIcon></StarIcon>
     </RepoStar>
   </RepoListWrapper>

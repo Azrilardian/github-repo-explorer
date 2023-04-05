@@ -1,31 +1,27 @@
-import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
-import searchUsers from '@/services/search-users'
+
 import { useUsername } from '@/redux/hooks/useUsername'
-
-type SearchUsersData = {
-  accountData: any[]
-}
-
-type ApiError = {
-  message: string
-}
+import searchUsers from '@/services/search-users'
+import type { ApiError } from '@/types/QueryApiError'
+import type { UsersType } from '@/types/Users'
 
 const useQueryUsers = () => {
   const { username } = useUsername()
 
-  const queryParameter = ['searchUser', username]
+  const queryParameter = ['searchUsers', username]
   const querySettings = {
     enabled: !!username,
+    onError: (error) => console.log(error.message),
   }
 
   const {
     isSuccess: isSearchSuccess,
     isLoading: isSearchLoading,
     isError: isSearchError,
+    status: searchStatus,
     data: searchUsersData,
     error: searchError,
-  } = useQuery<SearchUsersData, ApiError>(
+  } = useQuery<UsersType | ApiError>(
     queryParameter,
     () => searchUsers(username),
     querySettings
@@ -33,10 +29,11 @@ const useQueryUsers = () => {
 
   return {
     isSearchSuccess,
-    isSearchError,
     isSearchLoading,
-    searchError,
+    isSearchError,
+    searchStatus,
     searchUsersData,
+    searchError,
   }
 }
 

@@ -1,19 +1,20 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-type SelectedUserState = {
-  selectedUser: string
-}
+import type { SelectedUserType } from '@/types/SelectedUser'
 
-const initialState = {
+const initialState: SelectedUserType = {
   selectedUser: '',
-} as SelectedUserState
+}
 
 const selectedUserSlice = createSlice({
   name: 'selectedUserSlice',
   initialState,
   reducers: {
-    setSelectedUser: (state, action: PayloadAction<string>) => {
+    setSelectedUser: (
+      state: SelectedUserType,
+      action: PayloadAction<string>
+    ) => {
       state.selectedUser = action.payload
     },
   },

@@ -1,7 +1,7 @@
-import { Html, Head, Main, NextScript } from 'next/document'
-import React from 'react'
 import type { DocumentContext } from 'next/document'
+import { Html, Head, Main, NextScript } from 'next/document'
 import Document from 'next/document'
+import React from 'react'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {

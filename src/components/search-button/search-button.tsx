@@ -1,9 +1,11 @@
-import React, { memo } from 'react'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { memo } from 'react'
+import type { MouseEventHandler } from 'react'
+
 import useQueryUsers from '@/hooks/useQueryUsers'
 
 type ButtonProps = {
-  handleClick: any
+  handleClick: MouseEventHandler<HTMLButtonElement>
 }
 
 const SearchButton = ({ handleClick }: ButtonProps) => {
