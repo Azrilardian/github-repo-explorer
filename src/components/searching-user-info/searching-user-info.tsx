@@ -1,6 +1,8 @@
 import Chip from '@mui/material/Chip'
 import Typography from '@mui/material/Typography'
+import { memo } from 'react'
 
+import useQueryUsers from '@/hooks/useQueryUsers'
 import { useUsername } from '@/redux/hooks/useUsername'
 import { useUsers } from '@/redux/hooks/useUsers'
 
@@ -9,11 +11,12 @@ import { SearchingUserInfoWrapper } from './searching-user-info.elements'
 const SearchingUserInfo = () => {
   const { username } = useUsername()
   const { users } = useUsers()
+  const { isSearchSuccess } = useQueryUsers()
 
   const isUserExist = users.length >= 1
 
   return (
-    username && (
+    isSearchSuccess && (
       <SearchingUserInfoWrapper>
         <Typography variant="body1" gutterBottom my={2}>
           {isUserExist ? 'Showing users for' : 'No results for'}

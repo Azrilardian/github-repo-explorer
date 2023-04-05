@@ -1,3 +1,4 @@
+import useErrors from '@/redux/hooks/useErrors'
 import type { UsersType, UsersDataType } from '@/types/Users'
 import octokit from '@/utils/octokit-init'
 

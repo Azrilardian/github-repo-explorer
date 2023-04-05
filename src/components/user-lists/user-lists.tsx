@@ -3,7 +3,6 @@ import type { SyntheticEvent } from 'react'
 
 import UserList from '@/components/user-list/user-list'
 import useQueryRepos from '@/hooks/useQueryRepos'
-import useQueryUsers from '@/hooks/useQueryUsers'
 import { useSelectedUser } from '@/redux/hooks/useSelectedUser'
 import { useUserRepos } from '@/redux/hooks/useUserRepos'
 import { useUsers } from '@/redux/hooks/useUsers'
@@ -28,6 +27,8 @@ const UserLists = () => {
     },
     [dispatchSelectedUser]
   )
+
+  // TODO: SHOULD HANDLE OFFLINE ERROR
 
   return (
     <>

@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, memo, useCallback } from 'react'
 import type { SyntheticEvent } from 'react'
 
 import Input from '@/components/input/Input'
@@ -10,7 +10,7 @@ import { useUsers } from '@/redux/hooks/useUsers'
 
 const Form = () => {
   const { dispatchUsername } = useUsername()
-  const { dispatchUsers } = useUsers()
+  const { dispatchUsers, dispatchResetUsers } = useUsers()
   const { isSearchSuccess, searchUsersData } = useQueryUsers()
   const usernameInputRef = useRef<HTMLInputElement>()
 
@@ -18,27 +18,30 @@ const Form = () => {
     if (isSearchSuccess) {
       dispatchUsers(searchUsersData)
     } else {
-      dispatchUsers([])
+      dispatchResetUsers()
     }
-  }, [isSearchSuccess])
+  }, [isSearchSuccess, searchUsersData])
 
-  const handleUpdateUsername = (event: SyntheticEvent) => {
-    event.preventDefault()
+  const updateUsername = useCallback(
+    (event: SyntheticEvent) => {
+      event.preventDefault()
 
-    dispatchUsername(usernameInputRef.current?.value)
-  }
+      dispatchUsername(usernameInputRef.current?.value)
+    },
+    [dispatchUsername]
+  )
 
   return (
     <Box
       component="form"
       noValidate
       autoComplete="off"
-      onSubmit={handleUpdateUsername}
+      onSubmit={updateUsername}
     >
       <Input inputRefName={usernameInputRef} />
-      <SearchButton handleClick={handleUpdateUsername}></SearchButton>
+      <SearchButton updateUsername={updateUsername}></SearchButton>
     </Box>
   )
 }
 
-export default Form
+export default memo(Form)

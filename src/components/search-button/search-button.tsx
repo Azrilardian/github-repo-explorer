@@ -5,10 +5,10 @@ import type { MouseEventHandler } from 'react'
 import useQueryUsers from '@/hooks/useQueryUsers'
 
 type ButtonProps = {
-  handleClick: MouseEventHandler<HTMLButtonElement>
+  updateUsername: MouseEventHandler<HTMLButtonElement>
 }
 
-const SearchButton = ({ handleClick }: ButtonProps) => {
+const SearchButton = ({ updateUsername }: ButtonProps) => {
   const { isSearchLoading } = useQueryUsers()
 
   return (
@@ -18,7 +18,7 @@ const SearchButton = ({ handleClick }: ButtonProps) => {
         sx={{ margin: '1rem 0' }}
         variant="contained"
         size="large"
-        onClick={handleClick}
+        onClick={updateUsername}
         loading={isSearchLoading}
       >
         Search

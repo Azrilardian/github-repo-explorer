@@ -1,4 +1,4 @@
-import { setUsers } from '@/redux/features/usersSlice'
+import { setUsers, resetUsers } from '@/redux/features/usersSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks/hooks'
 import type { UsersType } from '@/types/Users'
 
@@ -10,9 +10,12 @@ const useUsers = () => {
     dispatch(setUsers(newUsers))
   }
 
+  const dispatchResetUsers = () => dispatch(resetUsers())
+
   return {
     users,
     dispatchUsers,
+    dispatchResetUsers,
   }
 }
 

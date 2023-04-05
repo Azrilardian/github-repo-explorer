@@ -25,6 +25,19 @@ const UserList = ({ login, getUserRepos }: UserListProps) => {
   const { isRepoLoading } = useQueryRepos()
   const { selectedUser } = useSelectedUser()
 
+  const renderUserRepoList = userRepos.map(
+    ({ id, name, description, stargazers_count, html_url }: ReposDataType) => (
+      <RepoList
+        html_url={html_url}
+        key={id}
+        id={id}
+        name={name}
+        description={description}
+        stargazers_count={stargazers_count}
+      ></RepoList>
+    )
+  )
+
   return (
     <Accordion
       sx={{ marginBottom: '10px' }}
@@ -50,25 +63,7 @@ const UserList = ({ login, getUserRepos }: UserListProps) => {
             <CircularProgress size={20} />
           </Box>
         ) : (
-          selectedUser === login &&
-          userRepos.map(
-            ({
-              id,
-              name,
-              description,
-              stargazers_count,
-              html_url,
-            }: ReposDataType) => (
-              <RepoList
-                html_url={html_url}
-                key={id}
-                id={id}
-                name={name}
-                description={description}
-                stargazers_count={stargazers_count}
-              ></RepoList>
-            )
-          )
+          selectedUser === login && renderUserRepoList
         )}
       </AccordionDetails>
     </Accordion>
