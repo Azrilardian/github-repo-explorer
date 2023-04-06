@@ -1,6 +1,6 @@
 const validateUrl = (url: string) => {
   const parsed = new URL(url)
-  const urlValidType = ['https', 'http']
+  const urlValidType = ['https:', 'http:']
 
   const isUrlValid = urlValidType.includes(parsed.protocol)
 
