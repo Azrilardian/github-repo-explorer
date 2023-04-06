@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box'
 import { useEffect, useRef, memo, useCallback } from 'react'
-import type { SyntheticEvent } from 'react'
+import type { SyntheticEvent, MutableRefObject } from 'react'
 
 import Input from '@/components/input/Input'
 import SearchButton from '@/components/search-button/search-button'
@@ -12,7 +12,7 @@ const Form = () => {
   const { dispatchUsername } = useUsername()
   const { dispatchUsers, dispatchResetUsers } = useUsers()
   const { isSearchSuccess, searchUsersData } = useQueryUsers()
-  const usernameInputRef = useRef<HTMLInputElement>()
+  const usernameInputRef = useRef() as MutableRefObject<HTMLInputElement>
 
   useEffect(() => {
     if (isSearchSuccess) {
@@ -34,6 +34,7 @@ const Form = () => {
   return (
     <Box
       component="form"
+      data-testid="form"
       noValidate
       autoComplete="off"
       onSubmit={updateUsername}

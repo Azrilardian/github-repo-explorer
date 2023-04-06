@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-import type { UsersType } from '@/types/Users'
+import type { UsersType, UsersDataType } from '@/types/Users'
 
 const initialState: UsersType = {
   users: [],
@@ -11,7 +11,7 @@ const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
   reducers: {
-    setUsers: (state: UsersType, action: PayloadAction<any>) => {
+    setUsers: (state: UsersType, action: PayloadAction<UsersDataType[]>) => {
       state.users = action.payload
     },
     resetUsers: (state: UsersType) => {

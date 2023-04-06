@@ -1,4 +1,4 @@
-import type { ReposType, ReposDataType } from '@/types/Repos'
+import type { ReposDataType } from '@/types/Repos'
 import octokit from '@/utils/octokit-init'
 
 const searchRepos = async (userSelected: string) => {
@@ -9,7 +9,7 @@ const searchRepos = async (userSelected: string) => {
 
     const reposData = reposResponse.data
 
-    const reposDataSliced: ReposType = reposData.map(
+    const reposDataSliced: ReposDataType[] = reposData.map(
       ({
         id,
         name,
@@ -28,8 +28,10 @@ const searchRepos = async (userSelected: string) => {
     )
 
     return reposDataSliced
-  } catch (error: Error) {
-    return new Error(error)
+  } catch (error) {
+    // return new Error(error)
+    console.log(error)
+    return [] as ReposDataType[]
   }
 }
 

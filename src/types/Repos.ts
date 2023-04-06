@@ -1,6 +1,6 @@
 export interface ReposDataType {
-  id: number
-  key?: number
+  id: string
+  key?: string
   name: string
   description?: string
   stargazers_count: number

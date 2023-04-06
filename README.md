@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Github Repositories Explorer
 
-## Getting Started
+## Deskripsi
 
-First, run the development server:
+Project ini dibuat dengan menggunakan Library React dan Framework Next. Project ini menurut saya memiliki skala yang terbilang kecil, tetapi beberapa point penting yang bisa saya catat adalah:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1.  Mengatur React Query untuk bekerja pada kapasitas seminimal mungkin untuk melakukan fetching
+2.  Arsitektur yang meliputi
+    - typescript
+    - Eslint
+    - prettier
+    - husky
+    - stylelint
+    - babel
+    - lint staged
+    - redux
+    - mui
+    - commit lint
+    - dsb.
+3.  Styling menggunakan twin.macro, untuk menggabungkan kemampuan tailwind dan styled component
+4.  Dan, Unit testing minimal
+5.  Struktur folder yang scalable
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Karena project ini merupakan bagian dari technical test, saya sepakat bahwa arsitektur yang saya gunakan disini terbilang overkill, bercermin dari skala project yang terbilang kecil.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Catatan
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Ini project pertama saya menggunakan typescript, mungkin sebagian kode yang saya tulis bukan merupakan best practice terbaik yang ada

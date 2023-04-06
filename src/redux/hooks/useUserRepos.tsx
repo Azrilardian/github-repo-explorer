@@ -1,12 +1,12 @@
 import { setUserRepos } from '@/redux/features/userReposSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks/hooks'
-import type { ReposType } from '@/types/Repos'
+import type { ReposDataType } from '@/types/Repos'
 
 const useUserRepos = () => {
   const dispatch = useAppDispatch()
   const userRepos = useAppSelector((state) => state.reposReducer.userRepos)
 
-  const dispatchUserRepos = (repos: ReposType) => {
+  const dispatchUserRepos = (repos: ReposDataType[]) => {
     dispatch(setUserRepos(repos))
   }
 

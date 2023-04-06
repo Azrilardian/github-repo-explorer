@@ -1,5 +1,6 @@
-import { useEffect, useCallback } from 'react'
 import type { SyntheticEvent } from 'react'
+import { useEffect, useCallback } from 'react'
+import React from 'react'
 
 import UserList from '@/components/user-list/user-list'
 import useQueryRepos from '@/hooks/useQueryRepos'

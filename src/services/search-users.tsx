@@ -1,5 +1,4 @@
-import useErrors from '@/redux/hooks/useErrors'
-import type { UsersType, UsersDataType } from '@/types/Users'
+import type { UsersDataType } from '@/types/Users'
 import octokit from '@/utils/octokit-init'
 
 const searchUsers = async (username: string) => {
@@ -11,7 +10,7 @@ const searchUsers = async (username: string) => {
 
     const usersData = usersResponse.data.items
 
-    const usersDataSliced: UsersType = usersData.map(
+    const usersDataSliced: UsersDataType[] = usersData.map(
       ({ id, login }: UsersDataType) => {
         return {
           id,
@@ -21,8 +20,10 @@ const searchUsers = async (username: string) => {
     )
 
     return usersDataSliced
-  } catch (error: Error) {
-    return new Error(error)
+  } catch (error) {
+    // return new Error(error)
+    console.log(error)
+    return [] as UsersDataType[]
   }
 }
 

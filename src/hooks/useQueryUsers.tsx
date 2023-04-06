@@ -2,8 +2,6 @@ import { useQuery } from 'react-query'
 
 import { useUsername } from '@/redux/hooks/useUsername'
 import searchUsers from '@/services/search-users'
-import type { ApiError } from '@/types/QueryApiError'
-import type { UsersType } from '@/types/Users'
 import type { UsersDataType } from '@/types/Users'
 
 const useQueryUsers = () => {
@@ -21,7 +19,7 @@ const useQueryUsers = () => {
     status: searchStatus,
     data: searchUsersData = [] as UsersDataType[],
     error: searchError,
-  } = useQuery<UsersType | ApiError>(
+  } = useQuery<UsersDataType[]>(
     queryParameter,
     () => searchUsers(username),
     querySettings

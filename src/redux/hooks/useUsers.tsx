@@ -1,12 +1,12 @@
 import { setUsers, resetUsers } from '@/redux/features/usersSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks/hooks'
-import type { UsersType } from '@/types/Users'
+import type { UsersDataType } from '@/types/Users'
 
 const useUsers = () => {
   const dispatch = useAppDispatch()
   const users = useAppSelector((state) => state.usersReducer.users)
 
-  const dispatchUsers = (newUsers: UsersType) => {
+  const dispatchUsers = (newUsers: UsersDataType[]) => {
     dispatch(setUsers(newUsers))
   }
 

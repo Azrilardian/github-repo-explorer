@@ -9,7 +9,7 @@ import { AppContainer } from './app.elements'
 
 const App = () => {
   return (
-    <AppContainer>
+    <AppContainer data-testid="app">
       <AppInfo></AppInfo>
       <Form></Form>
       <SearchingUserInfo></SearchingUserInfo>

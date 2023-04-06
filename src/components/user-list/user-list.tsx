@@ -5,7 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
-import type { MouseEventHandler } from 'react'
+import React from 'react'
 import type { SyntheticEvent } from 'react'
 
 import RepoList from '@/components/repo-list/repo-list'
@@ -17,7 +17,7 @@ import type { ReposDataType } from '@/types/Repos'
 type UserListProps = {
   key?: number
   login: string
-  getUserRepos: MouseEventHandler<HTMLButtonElement>
+  getUserRepos: any
 }
 
 const UserList = ({ login, getUserRepos }: UserListProps) => {

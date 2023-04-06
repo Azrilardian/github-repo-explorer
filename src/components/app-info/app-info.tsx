@@ -1,5 +1,6 @@
 import Typography from '@mui/material/Typography'
 import { memo } from 'react'
+import React from 'react'
 
 const AppInfo = () => {
   return (
