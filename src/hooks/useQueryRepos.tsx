@@ -17,7 +17,7 @@ const useQueryRepos = () => {
     isLoading: isRepoLoading,
     isError: isRepoError,
     data: repoData = [] as ReposDataType[],
-    error: repoError,
+    error: repoError = {} as any,
   } = useQuery<ReposDataType[]>(
     queryParameter,
     () => searchRepos(selectedUser),

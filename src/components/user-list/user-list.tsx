@@ -5,9 +5,10 @@ import AccordionSummary from '@mui/material/AccordionSummary'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
-import React from 'react'
+import React, { memo } from 'react'
 import type { SyntheticEvent } from 'react'
 
+import BasicAlert from '@/components/alert/alert'
 import RepoList from '@/components/repo-list/repo-list'
 import useQueryRepos from '@/hooks/useQueryRepos'
 import { useSelectedUser } from '@/redux/hooks/useSelectedUser'
@@ -22,7 +23,7 @@ type UserListProps = {
 
 const UserList = ({ login, getUserRepos }: UserListProps) => {
   const { userRepos } = useUserRepos()
-  const { isRepoLoading } = useQueryRepos()
+  const { isRepoLoading, isRepoError, repoError } = useQueryRepos()
   const { selectedUser } = useSelectedUser()
 
   const renderUserRepoList = userRepos.map(
@@ -37,6 +38,8 @@ const UserList = ({ login, getUserRepos }: UserListProps) => {
       ></RepoList>
     )
   )
+
+  if (isRepoError) return <BasicAlert message={repoError.message}></BasicAlert>
 
   return (
     <Accordion
@@ -70,4 +73,4 @@ const UserList = ({ login, getUserRepos }: UserListProps) => {
   )
 }
 
-export default UserList
+export default memo(UserList)

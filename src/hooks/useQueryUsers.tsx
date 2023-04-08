@@ -18,7 +18,7 @@ const useQueryUsers = () => {
     isError: isSearchError,
     status: searchStatus,
     data: searchUsersData = [] as UsersDataType[],
-    error: searchError,
+    error: searchError = {} as any,
   } = useQuery<UsersDataType[]>(
     queryParameter,
     () => searchUsers(username),

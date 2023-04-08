@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box'
-import { useEffect, useRef, memo, useCallback } from 'react'
+import { useEffect, useRef, useMemo, memo, useCallback } from 'react'
 import type { SyntheticEvent, MutableRefObject } from 'react'
 
 import Input from '@/components/input/Input'
@@ -14,13 +14,17 @@ const Form = () => {
   const { isSearchSuccess, searchUsersData } = useQueryUsers()
   const usernameInputRef = useRef() as MutableRefObject<HTMLInputElement>
 
+  const searchUsersDataMemo = useMemo(() => {
+    return { ...searchUsersData }
+  }, [searchUsersData])
+
   useEffect(() => {
     if (isSearchSuccess) {
       dispatchUsers(searchUsersData)
     } else {
       dispatchResetUsers()
     }
-  }, [isSearchSuccess, searchUsersData])
+  }, [isSearchSuccess, searchUsersDataMemo])
 
   const updateUsername = useCallback(
     (event: SyntheticEvent) => {

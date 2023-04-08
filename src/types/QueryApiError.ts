@@ -1,3 +1,3 @@
-export type ApiError = {
+export interface ApiError {
   message: string
 }

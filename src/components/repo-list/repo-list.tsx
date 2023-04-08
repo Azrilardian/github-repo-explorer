@@ -1,5 +1,6 @@
 import StarIcon from '@mui/icons-material/Star'
 import Typography from '@mui/material/Typography'
+import { memo } from 'react'
 
 import type { ReposDataType } from '@/types/Repos'
 import sliceWords from '@/utils/sliceWords'
@@ -30,4 +31,4 @@ const RepoList = ({
   </RepoListWrapper>
 )
 
-export default RepoList
+export default memo(RepoList)
