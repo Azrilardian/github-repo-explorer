@@ -1,4 +1,4 @@
-import { setUserRepos } from '@/redux/features/userReposSlice'
+import { setUserRepos, resetUserRepos } from '@/redux/features/userReposSlice'
 import { useAppSelector, useAppDispatch } from '@/redux/hooks/hooks'
 import type { ReposDataType } from '@/types/Repos'
 
@@ -10,9 +10,14 @@ const useUserRepos = () => {
     dispatch(setUserRepos(repos))
   }
 
+  const dispatchResetUserRepos = () => {
+    dispatch(resetUserRepos())
+  }
+
   return {
     userRepos,
     dispatchUserRepos,
+    dispatchResetUserRepos,
   }
 }
 

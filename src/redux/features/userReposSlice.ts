@@ -17,8 +17,11 @@ const userReposSlice = createSlice({
     ) => {
       state.userRepos = action.payload
     },
+    resetUserRepos: (state: ReposType) => {
+      state.userRepos = initialState.userRepos
+    },
   },
 })
 
-export const { setUserRepos } = userReposSlice.actions
+export const { setUserRepos, resetUserRepos } = userReposSlice.actions
 export default userReposSlice.reducer

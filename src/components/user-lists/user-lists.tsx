@@ -16,9 +16,13 @@ const UserLists = () => {
   const { selectedUser, dispatchSelectedUser } = useSelectedUser()
   const { isRepoSuccess, repoData } = useQueryRepos()
   const { isSearchError, searchError } = useQueryUsers()
-  const { dispatchUserRepos } = useUserRepos()
+  const { dispatchUserRepos, dispatchResetUserRepos } = useUserRepos()
 
   useEffect(() => {
+    if (selectedUser) {
+      dispatchResetUserRepos()
+    }
+
     if (selectedUser && isRepoSuccess) {
       dispatchUserRepos(repoData)
     }
