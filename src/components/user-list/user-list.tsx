@@ -18,7 +18,7 @@ import type { ReposDataType } from '@/types/Repos'
 type UserListProps = {
   key?: number
   login: string
-  getUserRepos: any
+  getUserRepos: (event: SyntheticEvent, login: string) => void
 }
 
 const UserList = ({ login, getUserRepos }: UserListProps) => {
@@ -39,7 +39,7 @@ const UserList = ({ login, getUserRepos }: UserListProps) => {
     )
   )
 
-  if (isRepoError) return <BasicAlert message={repoError.message}></BasicAlert>
+  if (isRepoError) return <BasicAlert message={repoError?.message}></BasicAlert>
 
   return (
     <Accordion

@@ -2,6 +2,7 @@ import { useQuery } from 'react-query'
 
 import { useSelectedUser } from '@/redux/hooks/useSelectedUser'
 import searchRepos from '@/services/search-repos'
+import type { ApiError } from '@/types/QueryApiError'
 import type { ReposDataType } from '@/types/Repos'
 
 const useQueryRepos = () => {
@@ -17,7 +18,7 @@ const useQueryRepos = () => {
     isLoading: isRepoLoading,
     isError: isRepoError,
     data: repoData = [] as ReposDataType[],
-    error: repoError = {} as any,
+    error: repoError = {} as ApiError,
   } = useQuery<ReposDataType[]>(
     queryParameter,
     () => searchRepos(selectedUser),

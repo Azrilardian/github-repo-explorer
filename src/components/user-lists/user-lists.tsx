@@ -39,7 +39,7 @@ const UserLists = () => {
   // TODO: SHOULD HANDLE OFFLINE ERROR
 
   if (isSearchError)
-    return <BasicAlert message={searchError.message}></BasicAlert>
+    return <BasicAlert message={searchError?.message}></BasicAlert>
 
   return (
     <>

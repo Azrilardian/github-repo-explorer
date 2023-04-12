@@ -2,11 +2,7 @@
 const path = require('path')
 
 // The folders containing files importing twin.macro
-const includedDirs = [
-  path.resolve(__dirname, 'components'),
-  path.resolve(__dirname, 'pages'),
-  path.resolve(__dirname, 'styles'),
-]
+const includedDirs = [path.resolve(__dirname, 'src')]
 
 module.exports = function withTwin(nextConfig) {
   return {
@@ -25,9 +21,11 @@ module.exports = function withTwin(nextConfig) {
             options: {
               sourceMaps: dev,
               plugins: [
-                require.resolve('babel-plugin-twin'),
                 require.resolve('babel-plugin-macros'),
-                require.resolve('babel-plugin-styled-components'),
+                [
+                  require.resolve('babel-plugin-styled-components'),
+                  { ssr: true, displayName: true },
+                ],
                 [
                   require.resolve('@babel/plugin-syntax-typescript'),
                   { isTSX: true },
